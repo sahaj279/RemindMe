@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="5dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="4"
+        android:background="#F4FCFF"
+        android:orientation="horizontal"
+        >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_weight="3"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/txtTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:layout_marginLeft="3dp"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+             />
+
+        <TextView
+            android:layout_marginLeft="4dp"
+            android:id="@+id/txtDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date"
+            android:textColor="#6A6E73"
+            android:textSize="16dp"
+             />
+
+
+        <TextView
+            android:layout_marginLeft="4dp"
+            android:id="@+id/txtTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Time"
+            android:textColor="#6A6E73"
+            android:textSize="16dp"
+             />
+
+    </LinearLayout>
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:layout_weight="1"
+
+    >
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+
+            android:id="@+id/checkdone"
+            />
+
+</LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

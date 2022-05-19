@@ -97,7 +97,7 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myviewholder> {
                         if (position != RecyclerView.NO_POSITION) {
                             listener.onDeleteClick(position);
                             dbManager dbManager = new dbManager(p.getContext());
-                            dbManager.deleteone(model);
+                            dbManager.update_complete(model);
                             Toast.makeText(view.getContext(),"Task Completed!",Toast.LENGTH_SHORT).show();
                         }
 
@@ -112,27 +112,6 @@ public class myAdapter extends RecyclerView.Adapter<myAdapter.myviewholder> {
                     Log.d("demo", "onclick" + position + " user " + model.getTitle());
                 }
             });
-
-//            mMarkdone.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    Log.d("button", "onclick" + position + " user " + model.getTitle());
-//
-//
-//                    dbManager dbManager = new dbManager(p.getContext());
-//                    dbManager.deleteone(model);
-//                    dataholder = dbManager.getEveryone();
-//                    adapter = new myAdapter(dataholder);
-//
-//                    LayoutInflater inflater = (LayoutInflater) p.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//                    view2 = inflater.inflate(R.layout.activity_main, null);
-//                    recyclerView = view2.findViewById(R.id.recyclerView);
-//                    recyclerView.setAdapter(adapter);
-//                    adapter.notifyDataSetChanged();
-//
-//                }
-//            });
-
 
         }
 

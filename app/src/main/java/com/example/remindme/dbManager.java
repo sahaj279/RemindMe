@@ -20,7 +20,7 @@ public class dbManager extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {                                           //sql query to insert data in sqllite
-        String query = "create table tbl_reminder(id integer primary key autoincrement,title text,date text,time text)";
+        String query = "create table tbl_reminder(id integer primary key autoincrement,title text,date text,time text,completed text default \"no\")";
         sqLiteDatabase.execSQL(query);
     }
 
@@ -44,6 +44,19 @@ public class dbManager extends SQLiteOpenHelper {
         }
 
     }
+    public boolean update_complete(Model model){
+        SQLiteDatabase db=this.getWritableDatabase();
+        String update="update tbl_reminder set completed= \"yes\" where title= \""+model.getTitle()+"\"" ;
+        Cursor cursor=db.rawQuery(update,null);
+        if(cursor.moveToFirst()){
+            return true;
+        }
+        else {
+            return false;
+        }
+
+    }
+
 
     public String addreminder(String title, String date, String time) {
         SQLiteDatabase database = this.getReadableDatabase();
@@ -69,29 +82,35 @@ public class dbManager extends SQLiteOpenHelper {
         Cursor cursor = database.rawQuery(query, null);
         return cursor;
     }
-    public ArrayList<Model> getEveryone(){
-        ArrayList<Model> customerModels=new ArrayList<>();
-        String select="Select * from tbl_reminder";
-        SQLiteDatabase database=this.getReadableDatabase();
-        Cursor cursor=database.rawQuery(select,null);
-
-        if(cursor.moveToFirst()){
-            do{
-                String title=cursor.getString(1);
-                String date=cursor.getString(2);
-                String time=cursor.getString(3);
-
-                Model customerModel=new Model(title ,date,time);
-                customerModels.add(customerModel);
-
-            }while(cursor.moveToNext());
-        }
-        else{
-            cursor.moveToFirst();
-        }
-        cursor.close();
-        database.close();
-
-        return customerModels;
+    public Cursor read_all_incompleted_reminders() {
+        SQLiteDatabase database = this.getWritableDatabase();
+        String query = "select * from tbl_reminder where completed=\"no\" order by id desc";                               //Sql query to  retrieve  data from the database
+        Cursor cursor = database.rawQuery(query, null);
+        return cursor;
     }
+//    public ArrayList<Model> getEveryone(){
+//        ArrayList<Model> customerModels=new ArrayList<>();
+//        String select="Select * from tbl_reminder";
+//        SQLiteDatabase database=this.getReadableDatabase();
+//        Cursor cursor=database.rawQuery(select,null);
+//
+//        if(cursor.moveToFirst()){
+//            do{
+//                String title=cursor.getString(1);
+//                String date=cursor.getString(2);
+//                String time=cursor.getString(3);
+//
+//                Model customerModel=new Model(title ,date,time);
+//                customerModels.add(customerModel);
+//
+//            }while(cursor.moveToNext());
+//        }
+//        else{
+//            cursor.moveToFirst();
+//        }
+//        cursor.close();
+//        database.close();
+//
+//        return customerModels;
+//    }
 }

@@ -31,7 +31,7 @@ public class NotificationMessage extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 dbManager dbManager = new dbManager(NotificationMessage.this);
-                dbManager.deleteone(model);
+                dbManager.update_complete(model);
                 Intent intent=new Intent(NotificationMessage.this,MainActivity.class);
                 Toast.makeText(NotificationMessage.this, "Task Completed!", Toast.LENGTH_SHORT).show();
                 startActivity(intent);

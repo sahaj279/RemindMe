@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@drawable/back"
+
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    app:backgroundTint="@null"
+    tools:context=".AddPeople">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:cardCornerRadius="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/cardwhite"
+            android:orientation="vertical"
+            app:backgroundTint="@null">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Friend"
+                android:textSize="24dp"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_margin="10dp"/>
+
+
+            <EditText
+                android:id="@+id/editName"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/edit_background"
+                android:hint="Enter Name"
+                android:textColor="@color/black"
+                android:textColorHint="#696969"
+                android:textSize="18dp" />
+
+
+            <EditText
+                android:id="@+id/editcontact"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/edit_background"
+                android:hint="Enter Contact No."
+                android:textColor="@color/black"
+                android:textColorHint="#696969"
+                android:inputType="phone"
+                android:textSize="18dp" />
+
+
+
+
+
+
+
+                <Button
+                    android:id="@+id/btnDOB"
+                    android:textColor="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:textSize="15sp"
+                    android:backgroundTint="@color/cardwhite"
+                    android:layout_weight="0.5"
+                    android:text="date of birth" />
+
+                <Button
+                    android:id="@+id/btnMA"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="0.5"
+                    android:backgroundTint="@color/cardwhite"
+                    android:text="Date of Marriage Anniversary"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+
+
+
+            <Button
+                android:id="@+id/btnSubmitp"
+                android:backgroundTint="@color/darkorange"
+                android:textColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textSize="15dp"
+                android:text="Add" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>

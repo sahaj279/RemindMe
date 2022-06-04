@@ -7,5 +7,7 @@
             android:title="Home" android:icon="@drawable/home"/>
         <item android:id="@+id/history"
             android:title="All Reminders" android:icon="@drawable/history"/>
+        <item android:id="@+id/people"
+            android:title="My Friends" android:icon="@drawable/person"/>
     </group>
 </menu>

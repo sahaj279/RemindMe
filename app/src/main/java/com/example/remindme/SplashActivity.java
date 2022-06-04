@@ -14,12 +14,12 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        int secondsDelayed = 1;
+        int secondsDelayed = 550;
         new Handler().postDelayed(new Runnable() {
             public void run() {
-                startActivity(new Intent(getApplicationContext(), MainActivity.class));             //after 500 milliseconds this block calls the mainActivity
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));//after 550 milliseconds this block calls the mainActivity
                 finish();
             }
-        }, secondsDelayed * 550);
+        }, secondsDelayed );
     }
 }

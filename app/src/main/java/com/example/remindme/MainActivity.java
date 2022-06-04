@@ -25,7 +25,7 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    ImageView menu;
+
     FloatingActionButton mCreateRem;
     RecyclerView mRecyclerview;
     ArrayList<Model> dataholder = new ArrayList<Model>();
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     Toolbar toolbar;
     ActionBarDrawerToggle actionBarDrawerToggle;
 
-
+//method for clicking item of menu
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(actionBarDrawerToggle.onOptionsItemSelected(item)){
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         else {
             imageView.setVisibility(View.INVISIBLE);
         }
-//        menu=(ImageView) findViewById(R.id.menu);
+
 
         //navigation view
 
@@ -81,7 +81,6 @@ public class MainActivity extends AppCompatActivity {
         actionBarDrawerToggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.menu_open,R.string.menu_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -98,6 +97,12 @@ public class MainActivity extends AppCompatActivity {
                         Intent i =new Intent(MainActivity.this,AllReminders.class);
                         startActivity(i);
                         break;
+                    case R.id.people:
+                        Log.i("clicked","people");
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        Intent i2 =new Intent(getApplicationContext(),PeopleActivity.class);
+                        startActivity(i2);
+                        break;
 
                 }
                 return true;
@@ -109,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void createExampleList(){
-        Cursor cursor = new dbManager(getApplicationContext()).read_all_incompleted_reminders();                  //Cursor To Load data From the database
+        Cursor cursor = new dbManager(getApplicationContext()).read_all_incompleted_reminders();//Cursor To Load data From the database
         while (cursor.moveToNext()) {
             Model model = new Model(cursor.getString(1), cursor.getString(2), cursor.getString(3));
             dataholder.add(model);
@@ -140,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        finish();                                                                                   //Makes the user to exit from the app
+        finish();//Makes the user to exit from the app
         super.onBackPressed();
 
     }

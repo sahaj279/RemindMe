@@ -1,41 +1,41 @@
 package com.example.remindme;
 
-import android.content.Intent;
-import android.database.Cursor;
-import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageView;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
+import androidx.appcompat.widget.Toolbar;
+//import android.widget.Toolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
+public class PeopleActivity extends AppCompatActivity {
 
-public class AllReminders extends AppCompatActivity {
-
+    FloatingActionButton addpeople;
     RecyclerView mRecyclerview;
-    ArrayList<Model> dataholder = new ArrayList<Model>();
+    ArrayList<Person> dataholder = new ArrayList<>();
     ImageView imageView;
-    AllReminderAdapter adapter;
+    PeopleAdapter adapter;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
     ActionBarDrawerToggle actionBarDrawerToggle;
 
-
+    //method for clicking item of menu
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if(actionBarDrawerToggle.onOptionsItemSelected(item)){
@@ -45,29 +45,41 @@ public class AllReminders extends AppCompatActivity {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.allreminders);
+        setContentView(R.layout.activity_people_layout);
 
         createExampleList();
         buildRecyclerView();
-        imageView= (ImageView) findViewById(R.id.alldone);
+        imageView= (ImageView) findViewById(R.id.img_no_people);
+        addpeople = (FloatingActionButton) findViewById(R.id.add_people);
+        addpeople.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), AddPeople.class);
+                startActivity(intent);
+                //Starts the new activity to add Reminders
 
+
+            }
+        });
         if(dataholder.size()==0){
             imageView.setVisibility(View.VISIBLE);
         }
         else {
             imageView.setVisibility(View.INVISIBLE);
         }
-//navigation view
-        navigationView=(NavigationView) findViewById(R.id.navigation_viewaa);
-        drawerLayout=(DrawerLayout) findViewById(R.id.draweraa);
-        toolbar=(Toolbar)findViewById(R.id.toolbaraa);
+
+
+        //navigation view
+
+        navigationView=(NavigationView) findViewById(R.id.navigation_view_people);
+        drawerLayout=(DrawerLayout) findViewById(R.id.drawer_layout_people);
+        toolbar=(Toolbar)findViewById(R.id.toolbar_p);
         setSupportActionBar(toolbar);
         actionBarDrawerToggle=new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.menu_open,R.string.menu_close);
         drawerLayout.addDrawerListener(actionBarDrawerToggle);
         actionBarDrawerToggle.syncState();
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -98,20 +110,24 @@ public class AllReminders extends AppCompatActivity {
 
 
     }
+
     public void createExampleList(){
-        Cursor cursor = new dbManager(getApplicationContext()).readallreminders();                  //Cursor To Load data From the database
+        Cursor cursor = new dbManager(getApplicationContext()).all_people();//Cursor To Load data From the database
         while (cursor.moveToNext()) {
-            Model model = new Model(cursor.getString(1), cursor.getString(2), cursor.getString(3));
-            dataholder.add(model);
+
+            Person person=new Person(cursor.getString(1),cursor.getString(2),cursor.getString(3),cursor.getString(4));
+            dataholder.add(person);
         }
     }
+    ////////////////////////////////////////////////////////////////////////////////////////////////////
+
     public void buildRecyclerView(){
-        mRecyclerview = (RecyclerView) findViewById(R.id.rec);
+        mRecyclerview = (RecyclerView) findViewById(R.id.recyclerViewp);
         mRecyclerview.setHasFixedSize(true);
         mRecyclerview.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        adapter = new AllReminderAdapter(dataholder);
+        adapter = new PeopleAdapter(dataholder);
         mRecyclerview.setAdapter(adapter);
-        adapter.setOnItemClickListener(new AllReminderAdapter.onItemClickListener() {
+        adapter.setOnItemClickListener(new PeopleAdapter.onItemClickListenerp() {
             @Override
             public void onItemClick(int position) {
                 dataholder.get(position);
@@ -127,6 +143,7 @@ public class AllReminders extends AppCompatActivity {
         dataholder.remove(position);
         adapter.notifyItemRemoved(position);
     }
+
 
 
 }

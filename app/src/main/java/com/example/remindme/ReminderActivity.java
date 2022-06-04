@@ -73,13 +73,9 @@ public class ReminderActivity extends AppCompatActivity {
 
                     }
                 }
-
-
             }
         });
     }
-
-
     private void processinsert(String title, String date, String time) {
         String result = new dbManager(this).addreminder(title, date, time);                  //inserts the title,date,time into sql lite database
         setAlarm(title, date, time);                                                                //calls the set alarm method to set alarm

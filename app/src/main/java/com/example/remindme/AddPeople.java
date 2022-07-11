@@ -135,11 +135,12 @@ public class AddPeople extends AppCompatActivity {
         intent.putExtra("ma", maa);
         intent.putExtra("contact", contactt);
 
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, PendingIntent.FLAG_ONE_SHOT);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         String dateandtime = dobb + " " + timeTonotify;
         DateFormat formatter = new SimpleDateFormat("d-M-yyyy hh:mm");
         try {
             Date date1 = formatter.parse(dateandtime);
+//            am.setInexactRepeating();
             am.set(AlarmManager.RTC_WAKEUP, date1.getTime(), pendingIntent);
             Calendar calendar = Calendar.getInstance();
             int year = calendar.get(Calendar.YEAR);

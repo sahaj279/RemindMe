@@ -1,4 +1,4 @@
-package com.example.remindme;
+package com.example.remindme.models;
 
 public class Person {
     String p_name,dob,marriage_date,contact;

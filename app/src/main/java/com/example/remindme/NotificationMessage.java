@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.remindme.models.Model;
+
 import java.util.Set;
 
 //this class creates the Reminder Notification Message

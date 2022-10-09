@@ -22,14 +22,14 @@
             android:name=".NotificationMessage"
             android:exported="false" />
         <activity
-        android:name=".AddPeople"
+        android:name=".screens.AddPeople"
         android:exported="false" />
         <activity
-            android:name=".PeopleActivity"
+            android:name=".screens.PeopleActivity"
             android:exported="false" />
 
         <activity
-            android:name=".ReminderActivity"
+            android:name=".screens.ReminderActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
@@ -42,11 +42,11 @@
 <!--            </intent-filter>-->
         </activity>
         <activity
-            android:name=".AllReminders"
+            android:name=".screens.AllReminders"
             android:exported="false" />
 
-        <receiver android:name=".AlarmBroadcast" />
-        <receiver android:name=".BirthdayAlarm" />
+        <receiver android:name=".alarms.AlarmBroadcast" />
+        <receiver android:name=".alarms.BirthdayAlarm" />
 
     </application>
 

@@ -1,32 +1,23 @@
-package com.example.remindme;
-import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.util.Log;
+package com.example.remindme.adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.remindme.MainActivity;
+import com.example.remindme.R;
+import com.example.remindme.dbManager;
+import com.example.remindme.models.Person;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.lang.ref.WeakReference;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.Period;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
@@ -53,10 +44,10 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PeopleView
 
     @Override
     public void onBindViewHolder(@NonNull PeopleAdapter.PeopleViewholder holder, int position) {
-        String mar=dataholder.get(position).getMarriage_date();
-        if(mar.equals("Date of Marriage Anniversary")){
-            mar="Unmarried";
-        }
+//        String mar=dataholder.get(position).getMarriage_date();
+//        if(mar.equals("Date of Marriage Anniversary")){
+//            mar="Unmarried";
+//        }
 //
         Calendar calendar = Calendar.getInstance();
         int c_month = calendar.get(Calendar.MONTH)+1;
@@ -100,7 +91,7 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PeopleView
         holder.contact.setText("Phone No. "+dataholder.get(position).getContact());
         holder.dob.setText("Birthdate "+dataholder.get(position).getDob());
         holder.daysleft.setText(a+" days left for birthday");
-        holder.marriage.setText("Marriage Anniversary "+ mar);
+//        holder.marriage.setText("Marriage Anniversary "+ mar);
 
         holder.position = position;
         holder.person = person;
@@ -122,7 +113,7 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PeopleView
         int position;
         Person person;
 
-        TextView name,contact,dob,daysleft,marriage;
+        TextView name,contact,dob,daysleft;
 
         CheckBox checkBox;
 
@@ -133,7 +124,7 @@ public class PeopleAdapter extends RecyclerView.Adapter<PeopleAdapter.PeopleView
             contact=(TextView)itemView.findViewById(R.id.txtContact);
             dob=(TextView)itemView.findViewById(R.id.dob);
             daysleft=(TextView)itemView.findViewById(R.id.daysLeftToBirthday);
-            marriage=(TextView)itemView.findViewById(R.id.txtMarriagep);
+//            marriage=(TextView)itemView.findViewById(R.id.txtMarriagep);
 
             checkBox = (CheckBox) itemView.findViewById(R.id.del_person);
             checkBox.setOnClickListener(new View.OnClickListener() {

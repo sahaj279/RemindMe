@@ -1,4 +1,4 @@
-package com.example.remindme;
+package com.example.remindme.screens;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -11,14 +11,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
+
 import androidx.appcompat.widget.Toolbar;
 //import android.widget.Toolbar;
+import com.example.remindme.MainActivity;
+import com.example.remindme.R;
+import com.example.remindme.adapters.PeopleAdapter;
+import com.example.remindme.dbManager;
+import com.example.remindme.models.Person;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
@@ -87,13 +91,13 @@ public class PeopleActivity extends AppCompatActivity {
                     case R.id.home:
                         Log.i("clicked","home");
                         drawerLayout.closeDrawer(GravityCompat.START);
-                        Intent i1 =new Intent(getApplicationContext(),MainActivity.class);
+                        Intent i1 =new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(i1);
                         break;
                     case R.id.history:
                         Log.i("clicked","history");
                         drawerLayout.closeDrawer(GravityCompat.START);
-                        Intent i =new Intent(getApplicationContext(),AllReminders.class);
+                        Intent i =new Intent(getApplicationContext(), AllReminders.class);
                         startActivity(i);
                         break;
                     case R.id.people:

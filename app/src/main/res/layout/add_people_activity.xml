@@ -9,7 +9,7 @@
     android:gravity="center"
     android:orientation="vertical"
     app:backgroundTint="@null"
-    tools:context=".AddPeople">
+    tools:context=".screens.AddPeople">
 
 
     <androidx.cardview.widget.CardView
@@ -77,19 +77,6 @@
                     android:backgroundTint="@color/cardwhite"
                     android:layout_weight="0.5"
                     android:text="date of birth" />
-
-                <Button
-                    android:id="@+id/btnMA"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="10dp"
-                    android:layout_weight="0.5"
-                    android:backgroundTint="@color/cardwhite"
-                    android:text="Date of Marriage Anniversary"
-                    android:textColor="@color/black"
-                    android:textSize="15sp" />
-
-
 
 
             <Button

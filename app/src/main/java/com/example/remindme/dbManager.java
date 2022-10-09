@@ -8,8 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import androidx.annotation.Nullable;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.example.remindme.models.Model;
+import com.example.remindme.models.Person;
 
 public class dbManager extends SQLiteOpenHelper {
     private static String dbname = "reminder";//Table  name to store reminders in sqllite

@@ -1,33 +1,28 @@
-package com.example.remindme;
+package com.example.remindme.adapters;
 
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.remindme.MainActivity;
+import com.example.remindme.R;
+import com.example.remindme.dbManager;
+import com.example.remindme.models.Model;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.List;
 
-public class AllReminderAdapter extends RecyclerView.Adapter<AllReminderAdapter.myAllviewholder> {
+public class myAdapter extends RecyclerView.Adapter<myAdapter.myviewholder> {
     public ViewGroup p;
     ArrayList<Model> dataholder = new ArrayList<Model>();
     private onItemClickListener mListener;
-    public AllReminderAdapter(ArrayList<Model> dataholder) {
+    public myAdapter(ArrayList<Model> dataholder) {
         this.dataholder = dataholder;
     }
 
@@ -35,19 +30,18 @@ public class AllReminderAdapter extends RecyclerView.Adapter<AllReminderAdapter.
         mListener = listener;
     }
 
-
-
     @NonNull
     @Override
-    public myAllviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         p = parent;
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_reminder_all_reminders, parent, false);  //inflates the xml file in recyclerview
-        myAllviewholder myviewholder = new myAllviewholder(view, mListener);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_reminder_file, parent, false);  //inflates the xml file in recyclerview
+        myviewholder myviewholder = new myviewholder(view, mListener);
         return myviewholder;
     }
+//
 
     @Override
-    public void onBindViewHolder(@NonNull myAllviewholder holder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull myviewholder holder, @SuppressLint("RecyclerView") int position) {
         Model model = dataholder.get(position);
         holder.mTitle.setText(dataholder.get(position).getTitle());                                 //Binds the single reminder objects to recycler view
         holder.mDate.setText(dataholder.get(position).getDate());
@@ -73,7 +67,7 @@ public class AllReminderAdapter extends RecyclerView.Adapter<AllReminderAdapter.
         void onDeleteClick(int position);
     }
 
-    class myAllviewholder extends RecyclerView.ViewHolder {
+    class myviewholder extends RecyclerView.ViewHolder {
 
         int position;
         Model model;
@@ -82,14 +76,14 @@ public class AllReminderAdapter extends RecyclerView.Adapter<AllReminderAdapter.
 
         CheckBox checkBox;
 
-        public myAllviewholder(@NonNull View itemView, onItemClickListener listener) {
+        public myviewholder(@NonNull View itemView, onItemClickListener listener) {
             super(itemView);
 
-            mTitle = (TextView) itemView.findViewById(R.id.txtTitledel);                               //holds the reference of the materials to show data in recyclerview
-            mDate = (TextView) itemView.findViewById(R.id.txtDatedel);
-            mTime = (TextView) itemView.findViewById(R.id.txtTimedel);
+            mTitle = (TextView) itemView.findViewById(R.id.txtTitle);                               //holds the reference of the materials to show data in recyclerview
+            mDate = (TextView) itemView.findViewById(R.id.txtDate);
+            mTime = (TextView) itemView.findViewById(R.id.txtTime);
 
-            checkBox = (CheckBox) itemView.findViewById(R.id.delete);
+            checkBox = (CheckBox) itemView.findViewById(R.id.checkdone);
             checkBox.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -98,8 +92,8 @@ public class AllReminderAdapter extends RecyclerView.Adapter<AllReminderAdapter.
                         if (position != RecyclerView.NO_POSITION) {
                             listener.onDeleteClick(position);
                             dbManager dbManager = new dbManager(p.getContext());
-                            dbManager.deleteone(model);
-                            Toast.makeText(view.getContext(),"Task Deleted Successfully!",Toast.LENGTH_SHORT).show();
+                            dbManager.update_complete(model);
+                            Toast.makeText(view.getContext(),"Task Completed!",Toast.LENGTH_SHORT).show();
                         }
 
                     }

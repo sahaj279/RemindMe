@@ -11,14 +11,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
+
 import androidx.appcompat.widget.Toolbar;
 //import android.widget.Toolbar;
+import com.example.remindme.adapters.myAdapter;
+import com.example.remindme.models.Model;
+import com.example.remindme.screens.AllReminders;
+import com.example.remindme.screens.PeopleActivity;
+import com.example.remindme.screens.ReminderActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 
@@ -94,13 +98,13 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.history:
                         Log.i("clicked","history");
                         drawerLayout.closeDrawer(GravityCompat.START);
-                        Intent i =new Intent(MainActivity.this,AllReminders.class);
+                        Intent i =new Intent(MainActivity.this, AllReminders.class);
                         startActivity(i);
                         break;
                     case R.id.people:
                         Log.i("clicked","people");
                         drawerLayout.closeDrawer(GravityCompat.START);
-                        Intent i2 =new Intent(getApplicationContext(),PeopleActivity.class);
+                        Intent i2 =new Intent(getApplicationContext(), PeopleActivity.class);
                         startActivity(i2);
                         break;
 

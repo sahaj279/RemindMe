@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="#E9F3F6"
     tools:openDrawer="start"
-    tools:context=".AllReminders">
+    tools:context=".screens.AllReminders">
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"

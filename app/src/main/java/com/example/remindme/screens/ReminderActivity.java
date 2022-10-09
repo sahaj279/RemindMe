@@ -1,4 +1,4 @@
-package com.example.remindme;
+package com.example.remindme.screens;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +16,11 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
+
+import com.example.remindme.MainActivity;
+import com.example.remindme.R;
+import com.example.remindme.alarms.AlarmBroadcast;
+import com.example.remindme.dbManager;
 
 import java.text.DateFormat;
 import java.text.ParseException;

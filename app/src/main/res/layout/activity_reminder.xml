@@ -9,7 +9,7 @@
     android:gravity="center"
     android:orientation="vertical"
     app:backgroundTint="@null"
-    tools:context=".ReminderActivity">
+    tools:context=".screens.ReminderActivity">
 
 
     <androidx.cardview.widget.CardView

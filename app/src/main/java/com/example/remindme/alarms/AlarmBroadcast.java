@@ -1,7 +1,11 @@
-package com.example.remindme;
+package com.example.remindme.alarms;
+
+import android.annotation.SuppressLint;
 import android.app.Notification;
 
 import com.example.remindme.MainActivity;
+import com.example.remindme.NotificationMessage;
+import com.example.remindme.R;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -19,24 +23,24 @@ import android.widget.RemoteViews;
 import androidx.core.app.NotificationCompat;
 
 import java.util.Locale;
-public class BirthdayAlarm extends BroadcastReceiver {
+
+public class AlarmBroadcast extends BroadcastReceiver {
     Handler handler;
     TextToSpeech textToSpeech;
 
     @Override
     public void onReceive(Context context, Intent intent) {
         Bundle bundle = intent.getExtras();
-        String name = bundle.getString("name");
-        String dobb = bundle.getString("dobb");
-        String ma = bundle.getString("ma") ;
-        String contact=bundle.getString("contact");
-        String speakable = "It's " + dobb + "  and today is "+name +"'s birthday";
+        String text = bundle.getString("event");
+        String d = bundle.getString("date");
+        String date = bundle.getString("date") + " " + bundle.getString("time");
+        String speakable = "It's " + bundle.getString("time") + " o'clock and this is the reminder , " + text;
         try {
             handler = new Handler();
             handler.post(new Runnable() {
                 @Override
                 public void run() {
-                    if (!name.isEmpty() && !dobb.isEmpty()) {
+                    if (!text.isEmpty() && !d.isEmpty()) {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.DONUT) {
                             textToSpeech = new TextToSpeech(context.getApplicationContext(), new TextToSpeech.OnInitListener() {
                                 @Override
@@ -63,10 +67,9 @@ public class BirthdayAlarm extends BroadcastReceiver {
         //Click on Notification
         Intent intent1 = new Intent(context, NotificationMessage.class);
         intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent1.putExtra("message", name);
-        intent1.putExtra("date", dobb);
-        intent1.putExtra("ma", ma);
-        intent1.putExtra("contact", contact);
+        intent1.putExtra("message", text);
+        intent1.putExtra("date", d);
+        intent1.putExtra("time", bundle.getString("time"));
         //Notification Builder
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 1, intent1, PendingIntent.FLAG_UPDATE_CURRENT);//flag one shot
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
@@ -80,8 +83,8 @@ public class BirthdayAlarm extends BroadcastReceiver {
         contentView.setImageViewResource(R.id.icon, R.mipmap.ic_launcher);
         PendingIntent pendingSwitchIntent = PendingIntent.getBroadcast(context, 0, intent1, PendingIntent.FLAG_UPDATE_CURRENT);
         contentView.setOnClickPendingIntent(R.id.icon, pendingSwitchIntent);
-        contentView.setTextViewText(R.id.message, name +"'s birthday");
-        contentView.setTextViewText(R.id.date, dobb);
+        contentView.setTextViewText(R.id.message, text);
+        contentView.setTextViewText(R.id.date, date);
         mBuilder.setSmallIcon(R.mipmap.ic_launcher);
 
         mBuilder.setAutoCancel(true);

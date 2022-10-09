@@ -1,16 +1,14 @@
-package com.example.remindme;
+package com.example.remindme.screens;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -19,7 +17,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.example.remindme.adapters.AllReminderAdapter;
+import com.example.remindme.MainActivity;
+import com.example.remindme.R;
+import com.example.remindme.dbManager;
+import com.example.remindme.models.Model;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -75,7 +77,7 @@ public class AllReminders extends AppCompatActivity {
                     case R.id.home:
                         Log.i("clicked","home");
                         drawerLayout.closeDrawer(GravityCompat.START);
-                        Intent i1 =new Intent(getApplicationContext(),MainActivity.class);
+                        Intent i1 =new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(i1);
                         break;
                     case R.id.history:
@@ -87,7 +89,7 @@ public class AllReminders extends AppCompatActivity {
                     case R.id.people:
                         Log.i("clicked","people");
                         drawerLayout.closeDrawer(GravityCompat.START);
-                        Intent i2 =new Intent(getApplicationContext(),PeopleActivity.class);
+                        Intent i2 =new Intent(getApplicationContext(), PeopleActivity.class);
                         startActivity(i2);
                         break;
 

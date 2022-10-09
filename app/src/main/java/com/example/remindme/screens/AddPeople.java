@@ -1,9 +1,8 @@
-package com.example.remindme;
+package com.example.remindme.screens;
 
 import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.PendingIntent;
-import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,10 +10,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.remindme.alarms.BirthdayAlarm;
+import com.example.remindme.R;
+import com.example.remindme.dbManager;
+import com.example.remindme.models.Person;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -23,7 +26,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class AddPeople extends AppCompatActivity {
-    Button add,dob,MA;
+    Button add,dob;
     EditText name,contact;
     String timeTonotify="00:00";
 
@@ -34,7 +37,7 @@ public class AddPeople extends AppCompatActivity {
         name = (EditText) findViewById(R.id.editName);
         contact = (EditText) findViewById(R.id.editcontact);
         dob = (Button) findViewById(R.id.btnDOB);
-        MA = (Button) findViewById(R.id.btnMA);
+//        MA = (Button) findViewById(R.id.btnMA);
         add = (Button) findViewById(R.id.btnSubmitp);
 
 
@@ -55,22 +58,22 @@ public class AddPeople extends AppCompatActivity {
             }
         });
 
-        MA.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Calendar calendar = Calendar.getInstance();
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH);
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog datePickerDialog = new DatePickerDialog(AddPeople.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                        MA.setText(day + "-" + (month + 1) + "-" + year);                             //sets the selected date as test for button
-                    }
-                }, year, month, day);
-                datePickerDialog.show();
-            }                                        //when we click on the choose date button it calls the select date method
-        });
+//        MA.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Calendar calendar = Calendar.getInstance();
+//                int year = calendar.get(Calendar.YEAR);
+//                int month = calendar.get(Calendar.MONTH);
+//                int day = calendar.get(Calendar.DAY_OF_MONTH);
+//                DatePickerDialog datePickerDialog = new DatePickerDialog(AddPeople.this, new DatePickerDialog.OnDateSetListener() {
+//                    @Override
+//                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+//                        MA.setText(day + "-" + (month + 1) + "-" + year);                             //sets the selected date as test for button
+//                    }
+//                }, year, month, day);
+//                datePickerDialog.show();
+//            }                                        //when we click on the choose date button it calls the select date method
+//        });
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,7 +83,7 @@ public class AddPeople extends AppCompatActivity {
                 String name_ = name.getText().toString().trim();                               //access the data from the input field
                 String contact_ = contact.getText().toString().trim();                                 //access the date from the choose date button
                 String dob_ = dob.getText().toString().trim();                                 //access the time from the choose time button
-                String MA_ = MA.getText().toString().trim();                                 //access the time from the choose time button
+                String MA_ = "MA.getText().toString().trim()";                                 //access the time from the choose time button
 
 
                 if (name_.isEmpty() || contact_.isEmpty()) {
